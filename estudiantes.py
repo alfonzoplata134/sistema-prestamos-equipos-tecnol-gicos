@@ -1,3 +1,10 @@
+"""
+Módulo para la gestión de estudiantes.
+
+Permite registrar y manejar la información de los estudiantes
+correspondiente a la HU03 del proyecto.
+"""
+
 import re
 from typing import Dict, List, Optional, Tuple
 import archivos
