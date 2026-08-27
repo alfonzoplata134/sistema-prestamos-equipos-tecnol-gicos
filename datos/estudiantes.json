@@ -4,5 +4,11 @@
         "nombre": "maria",
         "correo": "aleja@gmail.comq",
         "programa": "noche"
+    },
+    {
+        "documento": "10987654",
+        "nombre": "Carlos Alberto Gomez",
+        "correo": "carlos@mail.com",
+        "programa": "Diseno Grafico"
     }
 ]
