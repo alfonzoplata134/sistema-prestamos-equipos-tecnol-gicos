@@ -1,44 +1,41 @@
 import json
 import os
 
-DIRECTORIO_BASE = os.path.dirname(os.path.abspath(__file__))
-DIRECTORIO_DATOS = os.path.join(DIRECTORIO_BASE, "datos")
+CARPETA_DATOS = "datos"
 
 
-def asegurar_directorio_datos() -> None:
-    if not os.path.exists(DIRECTORIO_DATOS):
-        os.makedirs(DIRECTORIO_DATOS, exist_ok=True)
+def asegurar_carpeta_datos():
+
+    if not os.path.exists(CARPETA_DATOS):
+        os.makedirs(CARPETA_DATOS)
 
 
-def _obtener_ruta_completa(nombre_archivo: str) -> str:
-    asegurar_directorio_datos()
-    return os.path.join(DIRECTORIO_DATOS, nombre_archivo)
+def leer_json(nombre_archivo):
 
+    asegurar_carpeta_datos()
+    ruta = os.path.join(CARPETA_DATOS, nombre_archivo)
 
-def leer_json(nombre_archivo: str) -> list:
-    ruta = _obtener_ruta_completa(nombre_archivo)
-    
-    if not os.path.isfile(ruta):
+    if not os.path.exists(ruta):
         guardar_json(nombre_archivo, [])
         return []
 
     try:
         with open(ruta, "r", encoding="utf-8") as archivo:
-            contenido = json.load(archivo)
-            if isinstance(contenido, list):
-                return contenido
-            guardar_json(nombre_archivo, [])
+            datos = json.load(archivo)
+            if isinstance(datos, list):
+                return datos
             return []
-    except (json.JSONDecodeError, OSError, UnicodeDecodeError):
-        guardar_json(nombre_archivo, [])
+    except:
         return []
 
 
-def guardar_json(nombre_archivo: str, datos: list) -> bool:
-    ruta = _obtener_ruta_completa(nombre_archivo)
+def guardar_json(nombre_archivo, datos):
+
+    asegurar_carpeta_datos()
+    ruta = os.path.join(CARPETA_DATOS, nombre_archivo)
     try:
         with open(ruta, "w", encoding="utf-8") as archivo:
-            json.dump(datos, archivo, indent=4, ensure_ascii=False)
+            json.dump(datos, archivo, indent=4)
         return True
-    except (TypeError, OSError):
+    except:
         return False
