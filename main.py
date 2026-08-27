@@ -2,12 +2,12 @@ import estudiantes
 
 
 def limpiar_pantalla():
-    """Imprime una línea divisoria para separar las pantallas."""
+
     print("\n" + "=" * 65)
 
 
 def solicitar_campo_no_vacio(mensaje):
-    """Pide un dato al usuario y no avanza hasta que escriba algo."""
+
     while True:
         valor = input(mensaje).strip()
         if valor:
@@ -16,7 +16,7 @@ def solicitar_campo_no_vacio(mensaje):
 
 
 def menu_registrar_estudiante():
-    """Pide los datos de un estudiante y lo registra aplicando validaciones."""
+
     print("\n--- REGISTRAR NUEVO ESTUDIANTE ---")
     documento = solicitar_campo_no_vacio(" » Número de Documento (6 a 10 dígitos numéricos): ")
     nombre = solicitar_campo_no_vacio(" » Nombre Completo: ")
@@ -33,7 +33,7 @@ def menu_registrar_estudiante():
 
 
 def menu_listar_estudiantes():
-    """Muestra todos los estudiantes registrados en una tabla ordenada."""
+
     print("\n--- LISTADO DE ESTUDIANTES REGISTRADOS ---")
     lista = estudiantes.consultar_estudiantes()
 
@@ -57,7 +57,7 @@ def menu_listar_estudiantes():
 
 
 def menu_buscar_estudiante():
-    """Permite buscar estudiantes por número de documento o por nombre."""
+
     print("\n--- BÚSQUEDA DE ESTUDIANTE ---")
     criterio = input(" » Ingrese el número de documento o nombre a buscar: ").strip()
 
@@ -65,7 +65,6 @@ def menu_buscar_estudiante():
         print(" [!] No ingresó ningún dato para la búsqueda.")
         return
 
-    # 1. Intentar buscar primero por documento si ingresó números
     estudiante = estudiantes.buscar_estudiante_por_documento(criterio)
 
     if estudiante:
@@ -78,7 +77,7 @@ def menu_buscar_estudiante():
         print(" " + "-" * 45)
         return
 
-    # 2. Si no se encontró por documento, buscar por nombre (sin importar mayúsculas/espacios)
+
     coincidencias = estudiantes.buscar_estudiantes_por_nombre(criterio)
 
     if coincidencias:
@@ -93,7 +92,7 @@ def menu_buscar_estudiante():
 
 
 def mostrar_menu_principal():
-    """Muestra las opciones del menú principal."""
+
     limpiar_pantalla()
     print("      SISTEMA DE PRÉSTAMOS DE EQUIPOS TECNOLÓGICOS")
     print("=" * 65)
@@ -105,7 +104,7 @@ def mostrar_menu_principal():
 
 
 def main():
-    """Bucle principal del programa."""
+
     while True:
         mostrar_menu_principal()
         opcion = input(" Seleccione una opción (1-4): ").strip()
