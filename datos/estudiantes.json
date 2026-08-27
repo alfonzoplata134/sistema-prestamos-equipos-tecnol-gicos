@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "documento": "123456",
+        "nombre": "maria",
+        "correo": "aleja@gmail.comq",
+        "programa": "noche"
+    }
+]
