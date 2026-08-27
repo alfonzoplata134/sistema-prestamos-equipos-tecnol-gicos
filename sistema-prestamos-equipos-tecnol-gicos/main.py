@@ -7,19 +7,8 @@ def limpiar_pantalla():
     print("\n" + "=" * 65)
 
 
-def solicitar_campo_no_vacio(mensaje):
+def solicitar_documento():
 
-    while True:
-        valor = input(mensaje).strip()
-        if valor:
-            return valor
-        print("   [!] Este campo es obligatorio. Por favor, ingrese un valor.")
-
-
-def menu_registrar_estudiante():
-
-    print("\n--- REGISTRAR NUEVO ESTUDIANTE ---")
-    
     while True:
         documento = input(" » Número de Documento (6 a 10 dígitos numéricos): ").strip()
         if not documento:
@@ -34,7 +23,10 @@ def menu_registrar_estudiante():
         if estudiantes.buscar_estudiante_por_documento(documento) is not None:
             print(f"   [!] Ya existe un estudiante registrado con el documento '{documento}'.")
             continue
-        break
+        return documento
+
+
+def solicitar_nombre():
 
     while True:
         nombre = input(" » Nombre Completo: ").strip()
@@ -44,7 +36,10 @@ def menu_registrar_estudiante():
         if not all(c.isalpha() or c.isspace() for c in nombre):
             print("   [!] El nombre debe contener únicamente letras y espacios (sin números ni símbolos).")
             continue
-        break
+        return nombre
+
+
+def solicitar_correo():
 
     while True:
         correo = input(" » Correo Electrónico: ").strip().lower()
@@ -54,7 +49,10 @@ def menu_registrar_estudiante():
         if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', correo):
             print("   [!] El formato del correo es inválido (ejemplo: usuario@correo.com).")
             continue
-        break
+        return correo
+
+
+def solicitar_programa():
 
     while True:
         programa = input(" » Programa Académico: ").strip()
@@ -62,9 +60,18 @@ def menu_registrar_estudiante():
             print("   [!] Este campo es obligatorio. Por favor, ingrese un valor.")
             continue
         if not all(c.isalpha() or c.isspace() or c in ".-()" for c in programa):
-            print("   [!] El programa académico debe contener únicamente letras, espacios, puntos o guiones.")
+            print("   [!] El programa académico debe contener únicamente letras y espacios.")
             continue
-        break
+        return programa
+
+
+def menu_registrar_estudiante():
+
+    print("\n--- REGISTRAR NUEVO ESTUDIANTE ---")
+    documento = solicitar_documento()
+    nombre = solicitar_nombre()
+    correo = solicitar_correo()
+    programa = solicitar_programa()
 
     print("\nProcesando registro...")
     exito, mensaje = estudiantes.registrar_estudiante(documento, nombre, correo, programa)
