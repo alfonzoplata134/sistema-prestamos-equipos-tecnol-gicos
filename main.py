@@ -3,10 +3,12 @@ import estudiantes
 
 
 def limpiar_pantalla() -> None:
+    """============================================."""
     print("\n" + "=" * 65)
 
 
 def solicitar_campo_no_vacio(etiqueta: str) -> str:
+    """Solicita al usuario un dato y valida que no esté vacío."""
     while True:
         try:
             valor = input(etiqueta).strip()
@@ -19,6 +21,7 @@ def solicitar_campo_no_vacio(etiqueta: str) -> str:
 
 
 def menu_registrar_estudiante() -> None:
+    """Gestiona el registro de un nuevo estudiante."""
     print("\n--- REGISTRAR NUEVO ESTUDIANTE ---")
     try:
         documento = solicitar_campo_no_vacio(" » Número de Documento (sin espacios): ")
@@ -44,6 +47,7 @@ def menu_registrar_estudiante() -> None:
 
 
 def menu_listar_estudiantes() -> None:
+    """Muestra la lista de estudiantes registrados."""
     print("\n--- LISTADO DE ESTUDIANTES REGISTRADOS ---")
     lista = estudiantes.consultar_estudiantes()
 
@@ -67,6 +71,7 @@ def menu_listar_estudiantes() -> None:
 
 
 def menu_buscar_estudiante() -> None:
+    """Permite buscar un estudiante por su número de documento."""
     print("\n--- BÚSQUEDA DE ESTUDIANTE POR DOCUMENTO ---")
     try:
         documento = input(" » Ingrese el número de documento a consultar: ").strip()
@@ -92,6 +97,7 @@ def menu_buscar_estudiante() -> None:
 
 
 def mostrar_menu_principal() -> None:
+
     limpiar_pantalla()
     print("      SISTEMA DE PRÉSTAMOS DE EQUIPOS TECNOLÓGICOS")
     print("=" * 65)
@@ -103,6 +109,7 @@ def mostrar_menu_principal() -> None:
 
 
 def main() -> None:
+    """Ejecuta el flujo principal del sistema de préstamos."""
     while True:
         try:
             mostrar_menu_principal()
