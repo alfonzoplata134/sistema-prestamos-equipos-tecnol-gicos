@@ -16,5 +16,11 @@
         "nombre": "Carlos Gomez",
         "correo": "carlos@gmail.com",
         "programa": "Sistemas"
+    },
+    {
+        "documento": "1099887766",
+        "nombre": "Juan Perez",
+        "correo": "juan@gmail.com",
+        "programa": "Ingenieria De Sistemas"
     }
 ]
